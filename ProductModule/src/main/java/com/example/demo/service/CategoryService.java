@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Category;
 import com.example.demo.repository.CategoryRepository;
+import java.util.Optional;
+
 
 @Service
 public class CategoryService {
@@ -24,4 +26,19 @@ public class CategoryService {
 	public List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }
+	public boolean updateCategory(Integer id, Category updatedCategory) {
+	    Optional<Category> existingCategory = categoryRepository.findById(id);
+	    if (existingCategory.isPresent()) {
+	        Category category = existingCategory.get();
+	        // Update the category fields with the values from updatedCategory
+	        category.setCategoryName(updatedCategory.getCategoryName());
+	        category.setCategoryType(updatedCategory.getCategoryType());
+	        // ...
+
+	        categoryRepository.save(category);
+	        return true;
+	    } else {
+	        return false;
+	    }
+	}
 }

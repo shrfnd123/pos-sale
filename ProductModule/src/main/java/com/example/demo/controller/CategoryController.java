@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 
 import com.example.demo.entity.Category;
@@ -28,10 +26,20 @@ public class CategoryController {
         categoryService.createCategory(category);
         return ResponseEntity.ok("Category created successfully");
     }
+
     @GetMapping("/category-list")
-    public ResponseEntity<List<Category>> getCategories(){
-    	List<Category> categories = categoryService.getAllCategories();
-    	return ResponseEntity.ok(categories);
+    public ResponseEntity<List<Category>> getCategories() {
+        List<Category> categories = categoryService.getAllCategories();
+        return ResponseEntity.ok(categories);
+    }
+
+    @PutMapping("/category/{id}")
+    public ResponseEntity<String> updateCategory(@PathVariable Integer id, @RequestBody Category updatedCategory) {
+        boolean isUpdated = categoryService.updateCategory(id, updatedCategory);
+        if (isUpdated) {
+            return ResponseEntity.ok("Category updated successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
-
