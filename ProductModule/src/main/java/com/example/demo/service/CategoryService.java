@@ -41,4 +41,12 @@ public class CategoryService {
 	        return false;
 	    }
 	}
+	 public boolean deleteCategory(Integer id) {
+	        Optional<Category> categoryOptional = categoryRepository.findById(id);
+	        if (categoryOptional.isPresent()) {
+	            categoryRepository.deleteById(id);
+	            return true;
+	        }
+	        return false;
+	    }
 }
