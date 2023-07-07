@@ -33,10 +33,7 @@ public class Category {
 	@OneToMany(mappedBy="category", fetch = FetchType.LAZY)
     Collection<Product> products;
 	
-	public Category() {
-		// Default constructor required by JPA
-	}
-
+	
 	public Category(String categoryName, String categoryType, String categoryDescription, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		this.categoryName = categoryName;
 		this.categoryType = categoryType;

@@ -19,4 +19,12 @@ public class Supplier {
 
     @OneToMany(mappedBy="supplier", fetch = FetchType.LAZY)
     Collection<Product> products;
+    
+    public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }
