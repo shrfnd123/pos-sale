@@ -49,4 +49,7 @@ public class CategoryService {
 	        }
 	        return false;
 	    }
+	 public Category getCategoryById(Integer id) {
+	        return categoryRepository.findById(id).orElse(null);
+	    }
 }

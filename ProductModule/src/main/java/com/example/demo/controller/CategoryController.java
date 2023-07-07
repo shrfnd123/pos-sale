@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,11 +22,12 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @PostMapping(value = "/store-category", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> createCategory(@Valid @RequestBody Category category) {
+    @PostMapping(value = "/store-category", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Category> createCategory(@Valid @RequestBody Category category) {
         categoryService.createCategory(category);
-        return ResponseEntity.ok("Category created successfully");
+        return ResponseEntity.ok(category);
     }
+
 
     @GetMapping("/category-list")
     public ResponseEntity<List<Category>> getCategories() {
@@ -33,18 +35,24 @@ public class CategoryController {
         return ResponseEntity.ok(categories);
     }
 
-    @PutMapping("/category/{id}")
-    public ResponseEntity<String> updateCategory(@PathVariable Integer id, @RequestBody Category updatedCategory) {
+    @PutMapping(value = "/category/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Category> updateCategory(@PathVariable Integer id, @Valid @RequestBody Category updatedCategory) {
         boolean isUpdated = categoryService.updateCategory(id, updatedCategory);
         if (isUpdated) {
-            return ResponseEntity.ok("Category updated successfully");
+            Category updatedCategory1 = categoryService.getCategoryById(id);
+            if (updatedCategory1 != null) {
+                return ResponseEntity.ok(updatedCategory1);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
         } else {
             return ResponseEntity.notFound().build();
         }
     }
+
     @DeleteMapping("/category-delete/{id}")
     public ResponseEntity<String> deleteCategory(@PathVariable Integer id) {
-    	boolean isDeleted = categoryService.deleteCategory(id);
+        boolean isDeleted = categoryService.deleteCategory(id);
         if (isDeleted) {
             return ResponseEntity.ok("Category deleted successfully");
         } else {
@@ -52,3 +60,4 @@ public class CategoryController {
         }
     }
 }
+
