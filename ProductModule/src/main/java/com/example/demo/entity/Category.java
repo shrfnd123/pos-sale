@@ -33,7 +33,8 @@ public class Category {
 	@OneToMany(mappedBy="category", fetch = FetchType.LAZY)
     Collection<Product> products;
 	
-	
+	public Category() {
+	}
 	public Category(String categoryName, String categoryType, String categoryDescription, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		this.categoryName = categoryName;
 		this.categoryType = categoryType;
