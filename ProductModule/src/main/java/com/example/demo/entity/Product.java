@@ -30,7 +30,7 @@ public class Product {
 	    @Column
 	    private String brand;
 
-	    @Column(nullable = false)
+	    @Column(nullable = false, unique = true)
 	    private String name;
 
 	    @Column(nullable = false)
@@ -67,4 +67,14 @@ public class Product {
 
 	    @Column
 	    private String rack;
+	    
+	    public String getgenericName() {
+	    	
+	    	return genericName;
+	    }
+	    
+	    public void  setgenericName(String genericName) {
+	    	
+	    	this.genericName = genericName;
+	    }
 }

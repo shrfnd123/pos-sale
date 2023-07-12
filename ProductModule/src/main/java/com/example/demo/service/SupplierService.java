@@ -25,7 +25,8 @@ public class SupplierService {
 	public List<Supplier> getAllSupplier() {
 			
 	        return supplierRepository.findAll();
-	    }
+	}
+	
 	public boolean updateSupplier(Integer id, Supplier updateSupplier) {
 			
 		    Optional<Supplier> existingSupplier = supplierRepository.findById(id);

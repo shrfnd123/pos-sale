@@ -39,7 +39,9 @@ public class CategoryController {
     public ResponseEntity<Category> updateCategory(@PathVariable Integer id, @Valid @RequestBody Category updatedCategory) {
         boolean isUpdated = categoryService.updateCategory(id, updatedCategory);
         if (isUpdated) {
+        	
             Category updatedCategory1 = categoryService.getCategoryById(id);
+            
             if (updatedCategory1 != null) {
                 return ResponseEntity.ok(updatedCategory1);
             } else {
