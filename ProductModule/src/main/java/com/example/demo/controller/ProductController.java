@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +44,7 @@ public class ProductController {
     }
     
     @DeleteMapping("/product/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
+    public ResponseEntity<String> deleteProduct(@PathVariable Integer id) {
         boolean isDeleted = productService.deleteProduct(id);
         if (isDeleted) {
             return ResponseEntity.ok("Product deleted successfully");
@@ -50,5 +52,15 @@ public class ProductController {
             return ResponseEntity.notFound().build();
         }
     }
+    
+   @GetMapping("/products/{id}")
+   public ResponseEntity<List<Product>> getProductByCategory(@RequestParam("category_id") Integer categoryId) {
+	    List<Product> products = (List<Product>) productService.findProductByCategoryId(categoryId);
+	    if (products.isEmpty()) {
+	        return ResponseEntity.noContent().build();
+	    } else {
+	        return ResponseEntity.ok(products);
+	    }
+	}
 }
 

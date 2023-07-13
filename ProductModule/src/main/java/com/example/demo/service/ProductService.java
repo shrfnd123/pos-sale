@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -48,12 +49,21 @@ public class ProductService {
 	}
 	
 	public boolean deleteProduct(Integer id) {
+		
         if (productrepo.existsById(id)) {
+        	
         	productrepo.deleteById(id);
             return true;
+            
         } else {
+        	
             return false;
         }
     }
+	
+	public Product findProductByCategoryId(Integer categoryId) {
+        return productrepo.findByCategoryId(categoryId);
+    }
+	
 
 }
