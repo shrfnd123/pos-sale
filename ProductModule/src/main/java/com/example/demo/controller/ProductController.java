@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.demo.entity.Category;
 import com.example.demo.entity.Product;
 import com.example.demo.service.ProductService;
 
@@ -25,6 +26,12 @@ public class ProductController {
     @PostMapping("/store-product")
     public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product) {
         productService.createProduct(product);
+        return ResponseEntity.ok(product);
+    }
+    
+    @GetMapping("/product-list")
+    public ResponseEntity<List<Product>> getproduct() {
+        List<Product> product = productService.getAllProduct();
         return ResponseEntity.ok(product);
     }
 

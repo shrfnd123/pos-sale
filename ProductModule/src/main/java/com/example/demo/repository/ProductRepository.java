@@ -11,4 +11,5 @@ import com.example.demo.entity.Product;
 public interface ProductRepository extends JpaRepository<Product, Integer>{
 
 	Product findByCategoryId(Integer categoryId);
+	Product findBySupplierId(Integer supploerId);
 }

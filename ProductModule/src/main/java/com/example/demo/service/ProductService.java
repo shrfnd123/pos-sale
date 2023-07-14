@@ -25,16 +25,18 @@ public class ProductService {
 		
 	}
 	
+	public List<Product> getAllProduct() {
+		
+        return productrepo.findAll();
+	}
+	
 	public boolean updateProduct(Integer id, Product updateProduct) {
 		
 	    Optional<Product> existingProduct = productrepo.findById(id);
 	    
 	    if (existingProduct.isPresent()) {
 	    	Product product = existingProduct.get();
-	        // Update the category fields with the values from updatedCategory
 	    	product.setgenericName(updateProduct.getgenericName());
-	        // ...
-
 	        productrepo.save(product);
 	        return true;
 	    } else {
@@ -62,8 +64,15 @@ public class ProductService {
     }
 	
 	public Product findProductByCategoryId(Integer categoryId) {
+		
         return productrepo.findByCategoryId(categoryId);
+        
     }
 	
+	public Product findProductBySupplierId(Integer supplierId) {
+		
+		return productrepo.findByCategoryId(supplierId);
+				
+	}
 
 }
