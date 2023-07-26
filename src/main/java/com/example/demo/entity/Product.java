@@ -1,13 +1,8 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.Instant;
-
-import com.example.demo.entity.UnitOfMeasure;
-import com.example.demo.entity.Category;
-import com.example.demo.entity.Supplier;
-
-import jakarta.persistence.*;
 
 @Entity
 public class Product {

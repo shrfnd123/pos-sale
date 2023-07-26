@@ -1,17 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.Supplier;
+import com.example.demo.service.SupplierService;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.example.demo.entity.Category;
-import com.example.demo.entity.Supplier;
-import com.example.demo.service.SupplierService;
-
-import jakarta.validation.Valid;
 
 @RestController
 public class SupplierController {
@@ -25,7 +20,7 @@ public class SupplierController {
 	}
 	
 	@PostMapping(value = "/store-supplier", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Supplier> createSupplier(@Valid @RequestBody Supplier supplier){
+	public ResponseEntity<Supplier> createSupplier(@RequestBody Supplier supplier){
 		
 		supplierService.createSupplier(supplier);
         return ResponseEntity.ok(supplier);
@@ -38,7 +33,7 @@ public class SupplierController {
     }
     
     @PutMapping(value = "/supplier/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Supplier> updateSupplier(@PathVariable Integer id, @Valid @RequestBody Supplier updateSupplier) {
+    public ResponseEntity<Supplier> updateSupplier(@PathVariable Integer id, @RequestBody Supplier updateSupplier) {
         boolean isUpdated = supplierService.updateSupplier(id, updateSupplier);
         if (isUpdated) {
             Supplier updatedSupplier = supplierService.getSupplierById(id);

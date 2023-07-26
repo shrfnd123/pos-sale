@@ -1,16 +1,13 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.Category;
+import com.example.demo.service.CategoryService;
+import jakarta.validation.Valid;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import jakarta.validation.Valid;
-
-import com.example.demo.entity.Category;
-import com.example.demo.service.CategoryService;
 
 @RestController
 public class CategoryController {

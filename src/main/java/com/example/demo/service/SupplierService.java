@@ -1,13 +1,10 @@
 package com.example.demo.service;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.stereotype.Service;
-
-import com.example.demo.entity.Category;
 import com.example.demo.entity.Supplier;
 import com.example.demo.repository.SupplierRepository;
+import java.util.List;
+import java.util.Optional;
+import org.springframework.stereotype.Service;
 
 @Service
 public class SupplierService {
