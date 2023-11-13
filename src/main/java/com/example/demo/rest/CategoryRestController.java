@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.rest;
 
 import com.example.demo.entity.Category;
 import com.example.demo.service.CategoryService;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-public class CategoryController {
+public class CategoryRestController {
 
     private final CategoryService categoryService;
 

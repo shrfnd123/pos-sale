@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.rest;
 
 import com.example.demo.entity.Product;
 import com.example.demo.service.ProductService;
@@ -10,12 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class ProductController {
+public class ProductRestController {
 
     private final ProductService productService;
 
     @Autowired
-    public ProductController(ProductService productService) {
+    public ProductRestController(ProductService productService) {
         this.productService = productService;
     }
 
