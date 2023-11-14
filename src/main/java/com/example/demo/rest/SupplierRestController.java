@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.rest;
 
 import com.example.demo.entity.Supplier;
 import com.example.demo.service.SupplierService;
@@ -9,12 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class SupplierController {
+public class SupplierRestController {
 	
 	private final SupplierService supplierService;
 	
 	@Autowired
-	public SupplierController(SupplierService supplierService) {
+	public SupplierRestController(SupplierService supplierService) {
 		
 		this.supplierService = supplierService;
 	}
